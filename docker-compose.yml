@@ -1,0 +1,21 @@
+services:
+
+  recipes:
+    image: recipes
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongoRecipes
+    env_file: ./.env
+
+  mongoRecipes:
+    image: mongo
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$DB_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$DB_PASSWORD
