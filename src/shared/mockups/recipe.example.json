@@ -1,0 +1,8 @@
+{
+  "_id": {
+    "$oid": "64545937ef2a247bc566b2e4"
+  },
+  "name": "Nombre del plato",
+  "taste": ["Amargo", "Salado", "Dulce", "Agrio", "Picante", "Umami"],
+  "temperature": "Caliente o Frío"
+}

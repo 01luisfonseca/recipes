@@ -1,0 +1,10 @@
+{
+  "_id": {
+    "$oid": "64545937ef2a247bc566b2e4"
+  },
+  "name": "Nombre del restaurante",
+  "category": {
+    "$numberLong": "1 a 5, 5 es la máxima calidad" 
+  },
+  "concept": ["Gourmet", "Familiar", "Buffet", "Comida rápida", "Temático", "Para llevar"]
+}
