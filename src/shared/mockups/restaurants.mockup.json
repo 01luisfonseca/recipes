@@ -1,0 +1,102 @@
+[
+  {
+    "_id": {
+      "$oid": "6455912b58c8536ab79ee2d9"
+    },
+    "name": "Bella Grande Restaurant",
+    "concept": ["Gourmet"],
+    "category": {
+      "$numberLong": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6455912be02e162738cc5aef"
+    },
+    "name": "La Cantina Azteca",
+    "concept": ["Familiar", "Comida rápida", "Para llevar"],
+    "category": {
+      "$numberLong": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6455912b30db33cd28e858ea"
+    },
+    "name": "Delicias Criollas",
+    "concept": ["Para llevar"],
+    "category": {
+      "$numberLong": "4"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6455912b8e84e0571916aeef"
+    },
+    "name": "La Duquesa",
+    "concept": ["Temático", "Para llevar"],
+    "category": {
+      "$numberLong": "4"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6455912b70e43260e74f6b21"
+    },
+    "name": "Taco on the Plaza",
+    "concept": ["Familiar", "Temático", "Buffet"],
+    "category": {
+      "$numberLong": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6455912b2693f5c0e727b998"
+    },
+    "name": "Pasta La Rose!",
+    "concept": ["Familiar", "Comida rápida", "Para llevar"],
+    "category": {
+      "$numberLong": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6455912b55dc12a2e9174e99"
+    },
+    "name": "Cantina y Tacos",
+    "concept": ["Comida rápida", "Buffet", "Gourmet"],
+    "category": {
+      "$numberLong": "3"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6455912b06417ad7de7fd393"
+    },
+    "name": "Nueva Bahía Gourmet",
+    "concept": ["Buffet", "Para llevar"],
+    "category": {
+      "$numberLong": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6455912b4a81e8a465cc9120"
+    },
+    "name": "Cheese N Pasta",
+    "concept": ["Buffet", "Comida rápida", "Gourmet"],
+    "category": {
+      "$numberLong": "4"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6455912bfea79465ee222359"
+    },
+    "name": "Nueva Bahía Gourmet",
+    "concept": ["Para llevar"],
+    "category": {
+      "$numberLong": "2"
+    }
+  }
+]
