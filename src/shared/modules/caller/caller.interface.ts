@@ -3,5 +3,5 @@
 // }
 
 export interface CallerInterface {
-  read(input): Promise<any>;
+  read(input?: any): Promise<any>;
 }

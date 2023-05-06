@@ -9,7 +9,7 @@ export enum CallType {
 export class CallerService {
   constructor(private readonly restaurantFactory: RestaurantFactory) {}
 
-  read(callType: CallType, input): Promise<any> {
-    return this[CallType[callType]].read(input);
+  read(callType: CallType, input?: any): Promise<any> {
+    return this[callType].read(input);
   }
 }

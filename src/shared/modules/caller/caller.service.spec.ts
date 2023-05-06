@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CallerService } from './caller.service';
+import { CallType, CallerService } from './caller.service';
 import {
   Restaurant,
   RestaurantDocument,
@@ -16,9 +16,11 @@ describe('CallerService', () => {
     const restaurantMockRepository = {
       find: () => {
         return {
-          exec: jest.fn(() => {
-            name: 'demo';
-          }),
+          exec: jest.fn(() => [
+            {
+              name: 'demo',
+            },
+          ]),
         };
       },
       findAll: () => {
@@ -48,5 +50,11 @@ describe('CallerService', () => {
 
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  it('should get results', async () => {
+    await expect(service.read(CallType.restaurant)).resolves.toEqual([
+      { name: 'demo' },
+    ]);
   });
 });

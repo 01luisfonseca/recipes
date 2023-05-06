@@ -1,8 +1,19 @@
 # Proyecto "Recipes"
 
-Es un proyecto para conectar La oferta de platos de restaurantes y su clase de servicio, con los deseos de los usuarios.
+Es un proyecto para conectar La oferta de platos de restaurantes y su clase de servicio, con los deseos de los usuarios. El usuario ingresará los intereses de sabores, nivel del restaurante y tipo de comida que desea, y el sistema le devolverá una lista de restaurantes o platos que cumplen con sus deseos. El usuario podrá determinar si desea ver los restaurantes o los platos, o ambos.
 
 ## Definición de funcionalidad
+
+
+## Notas de desarrollo
+- Se usa el framework [NestJS](https://nestjs.com/) para el desarrollo de la API.
+- Se puede ejecutar con [Docker](https://www.docker.com/). Se crea una configuración para Docker en el archivo [Dockerfile](./Dockerfile), y una configuración para Docker Compose en el archivo [docker-compose.yml](./docker-compose.yml) para lanzar el servicio y su base de datos.
+- Se deja una copia de la base de datos de prueba en la carpeta [db](./db). Se puede usar para lanzar la base de datos en local, con el servicio de MongoDB registrado en el archivo [docker-compose.yml](./docker-compose.yml).
+- El proyecto se puede ejecutar en local, en un contenedor de Docker o en un contenedor de Cloud Run.
+- Se usa [MongoDB](https://www.mongodb.com/) como base de datos.
+- Se usa NodeJS 14 o superior.
+- Se usa el ORM [Mongoose](https://mongoosejs.com/) para la conexión con la base de datos. Se integra con NestJS a través del módulo [NestJS Mongoose](https://docs.nestjs.com/techniques/mongodb).
+- Se usa el patrón de diseño Factory para la gestión de la base de datos.
 
 
 ## Base de datos
