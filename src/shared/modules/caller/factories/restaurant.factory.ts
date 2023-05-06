@@ -10,7 +10,7 @@ export class RestaurantFactory implements CallerInterface {
     @InjectModel(Restaurant.name) private restaurantModel: Model<Restaurant>,
   ) {}
 
-  async read(input: any): Promise<any> {
+  async read(input: any): Promise<Restaurant[]> {
     return await this.restaurantModel.find().exec();
   }
 }
