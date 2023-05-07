@@ -11,13 +11,20 @@ import { AdvisorModule } from './advisor/advisor.module';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (config: ConfigService) => ({
-        uri: `${config.get<string>('DB_SERVERTYPE')}://${config.get<string>(
-          'DB_USERNAME',
-        )}:${config.get<string>('DB_PASSWORD')}@${config.get<string>(
-          'DB_HOST',
-        )}:${config.get<string>('DB_PORT')}/${config.get<string>('DB_SCHEMA')}`,
-      }),
+      useFactory: async (config: ConfigService) => {
+        const mongoConfig = {
+          uri: `${config.get<string>('DB_SERVERTYPE')}://${config.get<string>(
+            'DB_USERNAME',
+          )}:${config.get<string>('DB_PASSWORD')}@${config.get<string>(
+            'DB_HOST',
+          )}${
+            config.get<string>('DB_SERVERTYPE') !== 'mongodb'
+              ? ''
+              : ':' + config.get<string>('DB_PORT')
+          }`,
+        };
+        return mongoConfig;
+      },
     }),
     AdvisorModule,
   ],
