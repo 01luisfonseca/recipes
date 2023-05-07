@@ -4,8 +4,8 @@ Es un proyecto para conectar La oferta de platos de restaurantes y su clase de s
 
 ## Requerimientos
 - NodeJS 14 o superior
-- Docker (opcional)
-- Docker Compose (opcional)
+- Docker
+- Docker Compose
 
 ## Primeros pasos
 1. Instalación.
@@ -25,6 +25,10 @@ Es un proyecto para conectar La oferta de platos de restaurantes y su clase de s
 5. Detener la ejecución.
   ```bash
   $ npm run stop:docker
+  ```
+6. Descarte los cambios en GIT asociados a la carpeta [db](./db).
+  ```bash
+  $ git checkout -- db
   ```
 ### Nota:
 Es posible hacer una ejecución local con NodeJS, pero se debe tener una base de datos de MongoDB en local. Se puede usar el archivo [docker-compose.yml](./docker-compose.yml) para lanzar una base de datos de MongoDB en local, con el comando:
