@@ -4,7 +4,10 @@ import { ValorationResultsDto } from './dto/valorationResults.dto';
 import { AdvisorService } from './advisor.service';
 import { HttpExceptionFilter } from '../shared/filters/http-exception.filter';
 
-@Controller('advisor')
+@Controller({
+  version: '1',
+  path: 'advisor',
+})
 export class AdvisorController {
   constructor(private advisorSrv: AdvisorService) {}
 
