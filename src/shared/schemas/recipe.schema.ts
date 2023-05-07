@@ -50,6 +50,8 @@ export class Recipe {
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: Restaurant.name })
   restaurant: Restaurant;
+
+  score = 0;
 }
 
 export const RecipeSchema = SchemaFactory.createForClass(Recipe);

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AdvisorController } from './advisor.controller';
-import { CallerService } from '../shared/modules/caller/caller.service';
+import { AdvisorService } from './advisor.service';
 import { createMock } from '@golevelup/ts-jest';
 
 describe('AdvisorController', () => {
@@ -11,8 +11,8 @@ describe('AdvisorController', () => {
       controllers: [AdvisorController],
       providers: [
         {
-          provide: CallerService,
-          useValue: createMock<CallerService>(),
+          provide: AdvisorService,
+          useValue: createMock<AdvisorService>(),
         },
       ],
     }).compile();

@@ -37,6 +37,8 @@ export class Restaurant {
   @Prop()
   @IsNumber()
   category: number;
+
+  score = 0;
 }
 
 export const RestaurantSchema = SchemaFactory.createForClass(Restaurant);

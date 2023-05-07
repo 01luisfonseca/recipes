@@ -7,10 +7,13 @@ import {
   RestaurantDocument,
 } from '../../schemas/restaurant.schema';
 import { RestaurantFactory } from './factories/restaurant.factory';
+import { Recipe, RecipeDocument } from '../..//schemas/recipe.schema';
+import { RecipeFactory } from './factories/recipe.factory';
 
 describe('CallerService', () => {
   let service: CallerService;
   let spyRestaurantModel: Model<RestaurantDocument>;
+  let spyRecipeModel: Model<RecipeDocument>;
 
   beforeEach(async () => {
     const restaurantMockRepository = {
@@ -18,16 +21,20 @@ describe('CallerService', () => {
         return {
           exec: jest.fn(() => [
             {
-              name: 'demo',
+              name: 'demo restaurant',
             },
           ]),
         };
       },
-      findAll: () => {
+    };
+    const recipeMockRepository = {
+      find: () => {
         return {
-          exec: jest.fn(() => {
-            return [{ name: 'demo' }];
-          }),
+          exec: jest.fn(() => [
+            {
+              name: 'demo recipe',
+            },
+          ]),
         };
       },
     };
@@ -35,9 +42,14 @@ describe('CallerService', () => {
       providers: [
         CallerService,
         RestaurantFactory,
+        RecipeFactory,
         {
           provide: getModelToken(Restaurant.name),
           useValue: restaurantMockRepository,
+        },
+        {
+          provide: getModelToken(Recipe.name),
+          useValue: recipeMockRepository,
         },
       ],
     }).compile();
@@ -46,15 +58,24 @@ describe('CallerService', () => {
     spyRestaurantModel = module.get<Model<RestaurantDocument>>(
       getModelToken(Restaurant.name),
     );
+    spyRecipeModel = module.get<Model<RecipeDocument>>(
+      getModelToken(Recipe.name),
+    );
   });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
-  it('should get results', async () => {
+  it('should get results of restaurant', async () => {
     await expect(service.read(CallType.restaurant)).resolves.toEqual([
-      { name: 'demo' },
+      { name: 'demo restaurant' },
+    ]);
+  });
+
+  it('should get results of recipe', async () => {
+    await expect(service.read(CallType.recipe)).resolves.toEqual([
+      { name: 'demo recipe' },
     ]);
   });
 });

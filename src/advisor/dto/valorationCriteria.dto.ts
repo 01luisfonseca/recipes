@@ -26,7 +26,7 @@ export class ValorationCriteriaDto {
   @ArrayMinSize(1)
   @ArrayMaxSize(3)
   @IsIn(Object.values(FoodType))
-  concept: FoodType[];
+  concept?: FoodType[];
 
   @IsArray()
   @ValidateNested({ each: true })
@@ -44,7 +44,6 @@ export class ValorationCriteriaDto {
   taste?: TasteType[];
 
   @IsOptional()
-  @IsArray()
   @IsString()
   @IsIn(Object.values(TemperatureType))
   temperature?: TemperatureType;
