@@ -3,6 +3,21 @@
 Es un proyecto para conectar La oferta de platos de restaurantes y su clase de servicio, con los deseos de los usuarios. El usuario ingresará los intereses de sabores, nivel del restaurante y tipo de comida que desea, y el sistema le devolverá una lista de restaurantes o platos que cumplen con sus deseos. El usuario podrá determinar si desea ver los restaurantes o los platos, o ambos.
 
 ## Definición de funcionalidad
+El servicio requiere unos criterios de entrada para hacer la selección del restaurante y o plato. Los criterios son:
+- Categoría del restaurante: Numeros del 1 al 5, donde 1 es el más económico y 5 el más costoso.
+- Concepto de comida del restaurante: Comida rápida, Buffet, Gourmet.
+- Sabores del plato: Amargo, Salado, Dulce, Agrio, Picante, Umami
+- Temperatura del plato: Caliente, Frío
+
+El proceso de evaluación de la recomendación es el siguiente:
+- Primero se buscan los criterios de los restaurantes (categoría y concepto de comida) que cumplan con los criterios de entrada.
+- A continuación se califica a los restaurantes según la cantidad de categorías y conceptos que puedan aplicar. Se suman cuantos criterios cumple el restaurante y se divide por el total de criterios solicitados.
+- Después se buscan los platos por los sabores y la temperatura que cumplan con los criterios de entrada. Si ya se encontraron restaurantes con los primeros criterios, la comida también se filtrará por los restaurantes encontrados.
+- Se califican los platos encontrados según el cumplimiento de los requerimientos de entrada. Se suman cuantos criterios cumple el plato y se divide por el total de criterios solicitados. Además, si se suministraron los restaurantes, se hace la multiplicación de la calificación del restaurante por la calificación del plato.
+- Al final, se ordenan los restaurantes y los platos por la calificación obtenida, dejando en primer lugar los que tengan mayor calificación.
+- Según la solicitud del usuario, se devolverá el mejor restaurante y el mejor plato, o solo el mejor restaurante, o solo el mejor plato.
+
+Por defecto, siempre buscará el mejor plato, y se requerirá como mínimo un criterio de entrada.
 
 
 ## Notas de desarrollo

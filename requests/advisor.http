@@ -1,0 +1,11 @@
+POST http://localhost:3000/advisor HTTP/1.1
+content-type: application/json
+
+{
+  "withRestaurant": true,
+  "withRecipe": true,
+  "concept": ["Comida rápida"],
+  "category": [1, 2],
+  "taste": ["Dulce"],
+  "temperature": "Caliente"
+}
