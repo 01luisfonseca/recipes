@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -21,7 +22,7 @@ describe('CallerService', () => {
         return {
           exec: jest.fn(() => [
             {
-              name: 'demo restaurant',
+              toJSON: () => ({ name: 'demo restaurant' }),
             },
           ]),
         };
@@ -32,7 +33,7 @@ describe('CallerService', () => {
         return {
           exec: jest.fn(() => [
             {
-              name: 'demo recipe',
+              toJSON: () => ({ name: 'demo recipe' }),
             },
           ]),
         };
@@ -75,7 +76,7 @@ describe('CallerService', () => {
 
   it('should get results of recipe', async () => {
     await expect(service.read(CallType.recipe)).resolves.toEqual([
-      { name: 'demo recipe' },
+      { name: 'demo recipe', restaurant: { name: 'demo restaurant' } },
     ]);
   });
 });
