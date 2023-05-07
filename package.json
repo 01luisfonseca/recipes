@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "docker:build": "docker build -t recipes .",
     "docker:run": "docker run -p 3000:3000 recipes",
-    "docker:local": "npm run docker:build && npm run docker:run"
+    "docker:local": "npm run docker:build && npm run docker:run",
+    "seed": "npx ts-node src/seeder.ts"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",

@@ -17,4 +17,8 @@ export class CallerService {
   read(callType: CallType, input?: any): Promise<any> {
     return this[callType].read(input);
   }
+
+  seed(callType: CallType): Promise<any> {
+    return this[callType].seed();
+  }
 }

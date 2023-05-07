@@ -18,5 +18,12 @@
       "name": "Start - Test watch",
       "envFile": "${workspaceFolder}/.env"
     },
+    {
+      "command": "npm run seed",
+      "type": "node-terminal",
+      "request": "launch",
+      "name": "Start - Seed",
+      "envFile": "${workspaceFolder}/.env"
+    }
   ]
 }

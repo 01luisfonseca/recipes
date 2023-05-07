@@ -1,10 +1,9 @@
 {
   "_id": {
-    "$oid": "64545937ef2a247bc566b2e4"
+    "$oid": "6457f125f25b64f23436891c"
   },
-  "name": "Nombre del restaurante",
-  "category": {
-    "$numberLong": "1 a 5, 5 es la máxima calidad" 
-  },
-  "concept": ["Gourmet", "Familiar", "Buffet", "Comida rápida", "Temático", "Para llevar"]
+  "name": "Bella Mia Italian",
+  "concept": ["Temático", "Familiar", "Gourmet"],
+  "category": 4,
+  "__v": 0
 }
