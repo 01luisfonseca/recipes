@@ -11,10 +11,10 @@ steps:
       - Dockerfile
     id: Build
     env:
-    - 'DB_USERNAME=$DB_USERNAME'
-    - 'DB_PASSWORD=$DB_PASSWORD'
-    - 'DB_SERVERTYPE=$DB_SERVERTYPE'
-    - 'DB_HOST=$DB_HOST'
+    - 'DB_USERNAME=$_DB_USERNAME'
+    - 'DB_PASSWORD=$_DB_PASSWORD'
+    - 'DB_SERVERTYPE=$_DB_SERVERTYPE'
+    - 'DB_HOST=$_DB_HOST'
   - name: gcr.io/cloud-builders/docker
     args:
       - push
