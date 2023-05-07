@@ -1,4 +1,5 @@
-POST http://localhost:3000/advisor HTTP/1.1
+# Example of request when dont have any restaurant or recipe
+POST http://localhost:3000/v1/advisor HTTP/1.1
 content-type: application/json
 
 {

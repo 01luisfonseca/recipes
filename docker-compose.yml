@@ -4,9 +4,13 @@ services:
     image: recipes
     ports:
       - 3000:3000
+    links:
+      - mongoRecipes
     depends_on:
       - mongoRecipes
     env_file: ./.env
+    networks:
+      - node-webapp-network
 
   mongoRecipes:
     image: mongo
@@ -19,3 +23,8 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$DB_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD=$DB_PASSWORD
+    networks:
+      - node-webapp-network
+networks:
+  node-webapp-network:
+    driver: bridge

@@ -19,8 +19,11 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "docker:build": "docker build -t recipes .",
-    "docker:run": "docker run -p 3000:3000 recipes",
+    "docker:build:verbose": "docker build -t recipes --no-cache --progress=plain .",
+    "docker:run": "docker run -p 3000:3000 --env-file .env recipes",
     "docker:local": "npm run docker:build && npm run docker:run",
+    "start:docker": "docker compose up -d",
+    "stop:docker": "docker compose down",
     "seed": "npx ts-node src/seeder.ts"
   },
   "dependencies": {

@@ -1,0 +1,11 @@
+# Example of request when have any restaurant or recipe
+POST http://localhost:3000/v1/advisor HTTP/1.1
+content-type: application/json
+
+{
+  "withRestaurant": true,
+  "withRecipe": true,
+  "concept": ["Comida rápida"],
+  "taste": ["Dulce", "Agrio"],
+  "temperature": "Caliente"
+}
