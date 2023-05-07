@@ -28,6 +28,7 @@ export class ValorationCriteriaDto {
   @IsIn(Object.values(FoodType))
   concept?: FoodType[];
 
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @ArrayMinSize(1)

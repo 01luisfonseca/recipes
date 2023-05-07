@@ -18,7 +18,21 @@ export class RecipeFactory implements CallerInterface {
   }
 
   async read(input: any): Promise<Recipe[]> {
-    return await this.recipeModel.find(input).exec();
+    const recipes = (await this.recipeModel.find(input).exec()).map(
+      (recipe) => recipe.toJSON() as any,
+    );
+    const restaurantIds = recipes.map((recipe) => recipe.restaurant);
+    const restaurants = (
+      await this.restaurantModel.find({ _id: { $in: restaurantIds } }).exec()
+    ).map((restaurant) => restaurant.toJSON());
+    const restaurantsMap = restaurants.reduce((acc, restaurant) => {
+      acc[restaurant._id] = restaurant;
+      return acc;
+    }, {});
+    return recipes.map((recipe) => {
+      recipe.restaurant = restaurantsMap[recipe.restaurant];
+      return recipe;
+    });
   }
 
   async seed(): Promise<any> {

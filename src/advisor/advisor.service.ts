@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import {
   CallType,
   CallerService,
@@ -16,6 +20,7 @@ export class AdvisorService {
     concept,
     category,
   }: ValorationCriteriaDto): Promise<Restaurant[]> {
+    if (!concept?.length && !category?.length) return [];
     let restaurantFilter = {};
     if (concept?.length) {
       restaurantFilter = {
@@ -37,11 +42,11 @@ export class AdvisorService {
         .map((restaurant: Restaurant) => {
           let score = 0;
           for (const conspt of restaurant.concept) {
-            if (concept.includes(conspt)) {
+            if (concept?.length && concept.includes(conspt)) {
               score++;
             }
           }
-          if (category.includes(restaurant.category)) {
+          if (category?.length && category.includes(restaurant.category)) {
             score++;
           }
           restaurant.score =
@@ -55,8 +60,10 @@ export class AdvisorService {
 
   private async recipeAdvice(
     restaurants: Restaurant[],
-    { taste, temperature }: ValorationCriteriaDto,
+    { taste, temperature, category, concept }: ValorationCriteriaDto,
   ): Promise<Recipe[]> {
+    if ((category?.length || concept?.length) && !restaurants?.length)
+      return [];
     let recipeFilter = {};
     if (restaurants?.length) {
       recipeFilter = {
@@ -101,11 +108,24 @@ export class AdvisorService {
     const results: ValorationResultsDto = {};
     const restaurants = await this.restaurantAdvice(body);
     const recipes = await this.recipeAdvice(restaurants, body);
+    if (
+      !body.concept?.length &&
+      !body.category?.length &&
+      !body.taste?.length &&
+      !body.temperature
+    )
+      throw new BadRequestException('No evaluation criteria provided');
     if (body.withRestaurant) {
       results.restaurant = restaurants[0];
     }
-    if (body.withRecipe) {
+    if (body.withRecipe || (!body.withRestaurant && !body.withRecipe)) {
       results.recipe = recipes[0];
+    }
+    if (
+      Object.keys(results).length === 0 ||
+      (!results.restaurant && !results.recipe)
+    ) {
+      throw new NotFoundException('No results found');
     }
     return results;
   }

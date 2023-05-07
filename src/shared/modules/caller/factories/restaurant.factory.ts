@@ -12,7 +12,9 @@ export class RestaurantFactory implements CallerInterface {
   ) {}
 
   async read(input: any): Promise<Restaurant[]> {
-    return await this.restaurantModel.find(input).exec();
+    return (await this.restaurantModel.find(input).exec()).map((restaurant) =>
+      restaurant.toJSON(),
+    );
   }
 
   async seed(): Promise<any> {
