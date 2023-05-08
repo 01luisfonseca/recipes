@@ -35,25 +35,21 @@ export class AdvisorService {
       category,
       concept,
     });
-    let restaurants = [];
-    if (Object.keys(restaurantFilter).length) {
-      restaurants = (
-        await this.callerSrv.read(CallType.restaurant, restaurantFilter)
-      )
-        .map((restaurant: Restaurant) => {
-          let score = 0;
-          for (const conspt of restaurant.concept) {
-            if (concept?.length && concept.includes(conspt)) score++;
-          }
-          if (category?.length && category.includes(restaurant.category))
-            score++;
-          restaurant.score =
-            score / ((concept?.length || 0) + (category?.length || 0));
-          return restaurant;
-        })
-        .sort((a, b) => b.score - a.score);
-    }
-    return restaurants;
+    return !Object.keys(restaurantFilter).length
+      ? []
+      : (await this.callerSrv.read(CallType.restaurant, restaurantFilter))
+          .map((restaurant: Restaurant) => {
+            let score = 0;
+            for (const conspt of restaurant.concept)
+              concept?.length && concept.includes(conspt) && score++;
+            category?.length &&
+              category.includes(restaurant.category) &&
+              score++;
+            restaurant.score =
+              score / ((concept?.length || 0) + (category?.length || 0));
+            return restaurant;
+          })
+          .sort((a, b) => b.score - a.score);
   }
 
   private evaluateRecipeFilter(
@@ -78,21 +74,18 @@ export class AdvisorService {
       taste,
       temperature,
     });
-    let recipes = [];
-    if (Object.keys(recipeFilter).length) {
-      recipes = (await this.callerSrv.read(CallType.recipe, recipeFilter))
-        .map((recipe: Recipe) => {
-          let score = 0;
-          for (const tst of recipe.taste) {
-            if (taste.includes(tst)) score++;
-          }
-          if (temperature === recipe.temperature) score++;
-          recipe.score = score / ((taste?.length || 0) + (temperature ? 1 : 0));
-          return recipe;
-        })
-        .sort((a, b) => b.score - a.score);
-    }
-    return recipes;
+    return !Object.keys(recipeFilter).length
+      ? []
+      : (await this.callerSrv.read(CallType.recipe, recipeFilter))
+          .map((recipe: Recipe) => {
+            let score = 0;
+            for (const tst of recipe.taste) taste.includes(tst) && score++;
+            temperature === recipe.temperature && score++;
+            recipe.score =
+              score / ((taste?.length || 0) + (temperature ? 1 : 0));
+            return recipe;
+          })
+          .sort((a, b) => b.score - a.score);
   }
 
   async advice(body: ValorationCriteriaDto): Promise<ValorationResultsDto> {
