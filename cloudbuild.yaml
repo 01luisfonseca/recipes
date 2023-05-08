@@ -3,13 +3,13 @@ steps:
     args:
       - build
       - '--no-cache'
-      - '-e'
+      - '--env'
       - DB_USERNAME=$_DB_USERNAME
-      - '-e'
+      - '--env'
       - DB_PASSWORD=$_DB_PASSWORD
-      - '-e'
+      - '--env'
       - DB_SERVERTYPE=$_DB_SERVERTYPE
-      - '-e'
+      - '--env'
       - DB_HOST=$_DB_HOST
       - '-t'
       - >-
