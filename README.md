@@ -25,7 +25,7 @@ Es un proyecto para conectar La oferta de platos de restaurantes y su clase de s
 ### Nota:
 Es posible hacer una ejecución local con NodeJS, pero se debe tener una base de datos de MongoDB en local. Se puede usar el archivo [docker-compose.yml](./docker-compose.yml) para lanzar una base de datos de MongoDB en local, con el comando:
 ```bash
-$ docker compose up mongoRecipes
+$ docker compose up mongoDB
 ```
 Este comando lanzará una base de datos de MongoDB en el puerto 27017. Se debe cambiar la configuración de la base de datos en el archivo [.env](./.env) para que apunte a la base de datos local.
 
