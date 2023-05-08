@@ -16,24 +16,25 @@ import { Recipe } from '../shared/schemas/recipe.schema';
 export class AdvisorService {
   constructor(private callerSrv: CallerService) {}
 
+  private evaluateRestaurantFilter({
+    category,
+    concept,
+  }: ValorationCriteriaDto) {
+    const restaurantFilter: any = {};
+    if (concept?.length) restaurantFilter.concept = { $all: concept };
+    if (category?.length) restaurantFilter.category = { $in: category };
+    return restaurantFilter;
+  }
+
   private async restaurantAdvice({
     concept,
     category,
   }: ValorationCriteriaDto): Promise<Restaurant[]> {
     if (!concept?.length && !category?.length) return [];
-    let restaurantFilter = {};
-    if (concept?.length) {
-      restaurantFilter = {
-        ...restaurantFilter,
-        concept: { $all: concept },
-      };
-    }
-    if (category?.length) {
-      restaurantFilter = {
-        ...restaurantFilter,
-        category: { $in: category },
-      };
-    }
+    const restaurantFilter = this.evaluateRestaurantFilter({
+      category,
+      concept,
+    });
     let restaurants = [];
     if (Object.keys(restaurantFilter).length) {
       restaurants = (
@@ -42,13 +43,10 @@ export class AdvisorService {
         .map((restaurant: Restaurant) => {
           let score = 0;
           for (const conspt of restaurant.concept) {
-            if (concept?.length && concept.includes(conspt)) {
-              score++;
-            }
+            if (concept?.length && concept.includes(conspt)) score++;
           }
-          if (category?.length && category.includes(restaurant.category)) {
+          if (category?.length && category.includes(restaurant.category))
             score++;
-          }
           restaurant.score =
             score / ((concept?.length || 0) + (category?.length || 0));
           return restaurant;
@@ -58,44 +56,37 @@ export class AdvisorService {
     return restaurants;
   }
 
+  private evaluateRecipeFilter(
+    restaurants: Restaurant[],
+    { taste, temperature }: ValorationCriteriaDto,
+  ) {
+    const recipeFilter: any = {};
+    if (restaurants?.length)
+      recipeFilter.restaurant = { $in: restaurants.map((r) => r._id) };
+    if (taste?.length) recipeFilter.taste = { $all: taste };
+    if (temperature) recipeFilter.temperature = temperature;
+    return recipeFilter;
+  }
+
   private async recipeAdvice(
     restaurants: Restaurant[],
     { taste, temperature, category, concept }: ValorationCriteriaDto,
   ): Promise<Recipe[]> {
     if ((category?.length || concept?.length) && !restaurants?.length)
       return [];
-    let recipeFilter = {};
-    if (restaurants?.length) {
-      recipeFilter = {
-        ...recipeFilter,
-        restaurant: { $in: restaurants.map((r) => r._id) }, // TODO: Check if it works
-      };
-    }
-    if (taste?.length) {
-      recipeFilter = {
-        ...recipeFilter,
-        taste: { $all: taste },
-      };
-    }
-    if (temperature) {
-      recipeFilter = {
-        ...recipeFilter,
-        temperature,
-      };
-    }
+    const recipeFilter = this.evaluateRecipeFilter(restaurants, {
+      taste,
+      temperature,
+    });
     let recipes = [];
     if (Object.keys(recipeFilter).length) {
       recipes = (await this.callerSrv.read(CallType.recipe, recipeFilter))
         .map((recipe: Recipe) => {
           let score = 0;
           for (const tst of recipe.taste) {
-            if (taste.includes(tst)) {
-              score++;
-            }
+            if (taste.includes(tst)) score++;
           }
-          if (temperature === recipe.temperature) {
-            score++;
-          }
+          if (temperature === recipe.temperature) score++;
           recipe.score = score / ((taste?.length || 0) + (temperature ? 1 : 0));
           return recipe;
         })

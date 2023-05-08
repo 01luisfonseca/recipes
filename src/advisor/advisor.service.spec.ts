@@ -1,10 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AdvisorService } from './advisor.service';
-import { CallerService } from '../shared/modules/caller/caller.service';
+import {
+  CallerService,
+  CallType,
+} from '../shared/modules/caller/caller.service';
 import { createMock, DeepMocked } from '@golevelup/ts-jest';
 import { ValorationCriteriaDto } from './dto/valorationCriteria.dto';
 import { FoodType } from '../shared/schemas/restaurant.schema';
-import { CallType } from '../shared/modules/caller/caller.service';
 import { TasteType, TemperatureType } from '../shared/schemas/recipe.schema';
 
 describe('AdvisorService', () => {

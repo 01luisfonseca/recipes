@@ -41,8 +41,8 @@ export class RecipeFactory implements CallerInterface {
     const time = Date.now();
     const restaurants = await this.restaurantModel.find().exec();
     const results: any = {};
-    for (let i = 0; i < RecipesJSON.length; i++) {
-      const recipe = RecipesJSON[i] as Recipe;
+    const recipes = RecipesJSON as Recipe[];
+    for (const recipe of recipes) {
       const selectedRestaurant = this.randomElement(restaurants);
       if (
         !results[selectedRestaurant.name] &&

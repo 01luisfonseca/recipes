@@ -17,7 +17,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       status = exception.getStatus();
     } else if (exception.stack?.includes('CastError')) {
       status = 400;
-    } else status = 500;
+    }
 
     response.status(status).json({
       statusCode: status,

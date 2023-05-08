@@ -25,8 +25,7 @@ export class RestaurantFactory implements CallerInterface {
       created: 0,
       alreadyExists: 0,
     };
-    for (let i = 0; i < RestaurantsJSON.length; i++) {
-      const restaurant = RestaurantsJSON[i];
+    for (const restaurant of RestaurantsJSON) {
       if (!(await this.restaurantModel.exists({ name: restaurant.name }))) {
         const newRestaurant = new this.restaurantModel(restaurant);
         await newRestaurant.save();

@@ -13,8 +13,6 @@ import { RecipeFactory } from './factories/recipe.factory';
 
 describe('CallerService', () => {
   let service: CallerService;
-  let spyRestaurantModel: Model<RestaurantDocument>;
-  let spyRecipeModel: Model<RecipeDocument>;
 
   beforeEach(async () => {
     const restaurantMockRepository = {
@@ -56,12 +54,6 @@ describe('CallerService', () => {
     }).compile();
 
     service = module.get<CallerService>(CallerService);
-    spyRestaurantModel = module.get<Model<RestaurantDocument>>(
-      getModelToken(Restaurant.name),
-    );
-    spyRecipeModel = module.get<Model<RecipeDocument>>(
-      getModelToken(Recipe.name),
-    );
   });
 
   it('should be defined', () => {
