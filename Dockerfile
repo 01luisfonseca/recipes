@@ -30,4 +30,12 @@ USER node
 FROM node:18-alpine As production
 COPY --chown=node:node --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=node:node --from=build /usr/src/app/dist ./dist
+ARG DB_USERNAME_ARG
+ARG DB_PASSWORD_ARG
+ARG DB_HOST_ARG
+ARG DB_PORT_ARG
+ENV DB_USERNAME=${DB_USERNAME_ARG:-${DB_USERNAME}}
+ENV DB_PASSWORD=${DB_PASSWORD_ARG:-${DB_PASSWORD}}
+ENV DB_HOST=${DB_HOST_ARG:-${DB_HOST}}
+ENV DB_PORT=${DB_PORT_ARG:-${DB_PORT}}
 CMD [ "node", "dist/main.js" ]

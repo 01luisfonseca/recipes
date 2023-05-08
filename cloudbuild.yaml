@@ -4,17 +4,16 @@ steps:
       - build
       - '--no-cache'
       - '-t'
+      - --build-arg=DB_USERNAME_ARG=$_DB_USERNAME
+      - --build-arg=DB_PASSWORD_ARG=$_DB_PASSWORD
+      - --build-arg=DB_SERVERTYPE_ARG=$_DB_SERVERTYPE
+      - --build-arg=DB_HOST_ARG=$_DB_HOST
       - >-
         $_AR_HOSTNAME/$PROJECT_ID/cloud-run-source-deploy/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA
       - .
       - '-f'
       - Dockerfile
     id: Build
-    env:
-    - 'DB_USERNAME=$_DB_USERNAME'
-    - 'DB_PASSWORD=$_DB_PASSWORD'
-    - 'DB_SERVERTYPE=$_DB_SERVERTYPE'
-    - 'DB_HOST=$_DB_HOST'
   - name: gcr.io/cloud-builders/docker
     args:
       - push
