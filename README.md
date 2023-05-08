@@ -8,27 +8,23 @@ Es un proyecto para conectar La oferta de platos de restaurantes y su clase de s
 - Docker Compose
 
 ## Primeros pasos
-1. Instalación.
-  ```bash
-  $ npm install
-  ```
-2. Copiar el archivo de variables de entorno.
+1. Copiar el archivo de variables de entorno.
   ```bash
   $ cp .env.example .env
   ```
-3. Ejecución.
+2. Ejecución.
   ```bash
   # Ejecución en entorno local de docker, con docker compose
   $ npm run start:docker
+  ```
+3. Carga las semillas en la base de datos.
+  ```bash
+  $ npm run seed:docker
   ```
 4. Pruebas. Usar la información que se encuentra en la carpeta [requests](./requests) para probar los servicios, usando un cliente REST como Postman.
 5. Detener la ejecución.
   ```bash
   $ npm run stop:docker
-  ```
-6. Descarte los cambios en GIT asociados a la carpeta [db](./db).
-  ```bash
-  $ git checkout -- db
   ```
 ### Nota:
 Es posible hacer una ejecución local con NodeJS, pero se debe tener una base de datos de MongoDB en local. Se puede usar el archivo [docker-compose.yml](./docker-compose.yml) para lanzar una base de datos de MongoDB en local, con el comando:
