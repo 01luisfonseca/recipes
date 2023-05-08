@@ -1,18 +1,28 @@
 services:
 
+  commands:
+    build:
+      dockerfile: Dockerfile_dev
+    links:
+      - mongoDB
+    depends_on:
+      - mongoDB
+    env_file: ./.env
+    networks:
+      - node-webapp-network
   recipes:
     build: .
     ports:
       - 3000:3000
     links:
-      - mongoRecipes
+      - mongoDB
     depends_on:
-      - mongoRecipes
+      - mongoDB
     env_file: ./.env
     networks:
       - node-webapp-network
 
-  mongoRecipes:
+  mongoDB:
     image: mongo
     restart: unless-stopped
     env_file: ./.env

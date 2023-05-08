@@ -24,7 +24,8 @@
     "docker:local": "npm run docker:build && npm run docker:run",
     "start:docker": "docker compose up -d",
     "stop:docker": "docker compose down",
-    "seed": "npx ts-node src/seeder.ts"
+    "seed": "npx ts-node src/seeder.ts",
+    "seed:docker": "docker compose exec commands npm run seed"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
