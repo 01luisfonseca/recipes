@@ -1,14 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import { CallType, CallerService } from './caller.service';
-import {
-  Restaurant,
-  RestaurantDocument,
-} from '../../schemas/restaurant.schema';
+import { Restaurant } from '../../schemas/restaurant.schema';
 import { RestaurantFactory } from './factories/restaurant.factory';
-import { Recipe, RecipeDocument } from '../..//schemas/recipe.schema';
+import { Recipe } from '../..//schemas/recipe.schema';
 import { RecipeFactory } from './factories/recipe.factory';
 
 describe('CallerService', () => {
