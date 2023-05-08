@@ -12,17 +12,13 @@ Es un proyecto para conectar La oferta de platos de restaurantes y su clase de s
   ```bash
   $ cp .env.example .env
   ```
-2. Ejecución.
+2. Ejecución. En esta acción también se cargan los datos de prueba
   ```bash
   # Ejecución en entorno local de docker, con docker compose
   $ npm run start:docker
   ```
-3. Carga las semillas en la base de datos.
-  ```bash
-  $ npm run seed:docker
-  ```
-4. Pruebas. Usar la información que se encuentra en la carpeta [requests](./requests) para probar los servicios, usando un cliente REST como Postman.
-5. Detener la ejecución.
+3. Pruebas. Usar la información que se encuentra en la carpeta [requests](./requests) para probar los servicios, usando un cliente REST como Postman.
+4. Detener la ejecución. Limpia la base de datos.
   ```bash
   $ npm run stop:docker
   ```

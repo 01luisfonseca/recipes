@@ -40,7 +40,7 @@ JG.repeat(10, {
 
 ## Generación de recetas
 ```txt
-JG.repeat(200, {
+JG.repeat(500, {
   	name: JG.loremIpsum({ units: 'words', count: 2 }),
     taste:  _.uniq(JG.repeat(1,4, JG.random("Amargo", "Salado", "Dulce", "Agrio", "Picante", "Umami"))),
     temperature: JG.random('Caliente', 'Frío')

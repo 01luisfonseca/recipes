@@ -4,5 +4,6 @@
   },
   "name": "Nombre del plato",
   "taste": ["Amargo", "Salado", "Dulce", "Agrio", "Picante", "Umami"],
-  "temperature": "Caliente o Frío"
+  "temperature": "Caliente o Frío",
+  "restaurant": "ID Restaurante"
 }
