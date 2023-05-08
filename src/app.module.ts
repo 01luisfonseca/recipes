@@ -23,6 +23,7 @@ import { AdvisorModule } from './advisor/advisor.module';
               : ':' + config.get<string>('DB_PORT')
           }`,
         };
+        console.log(mongoConfig);
         return mongoConfig;
       },
     }),
